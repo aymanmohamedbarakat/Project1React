@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState , useRef } from "react";
 
 export default function Left() {
-  const [Degree, setDegree] = useState(0);
+  const [Degree, setDegree] = useState("Your Degree");
   const [Gpa, setGpa] = useState("");
+  const DegreeInput = useRef();
+
+
   
   const ShowDegree = () => {
+    setDegree(DegreeInput.current.value);
     if (Degree < 0 || Degree > 100) {
       setGpa("not valid");
     } else {
-      if (Degree >= 90) {
+      if (Degree >= 90 || Degree == 100) {
         setGpa("A (Excellent)");
       } else if (Degree >= 75) {
         setGpa("B (Very Good)");
@@ -31,7 +35,7 @@ export default function Left() {
         <form
           className="mb-4"
           onSubmit={(e) => {
-            e.preventDefault();
+            e.preventDefault(), {handleSubmit};
           }}
         >
           <div className="mb-3">
@@ -42,6 +46,7 @@ export default function Left() {
               type="number"
               className="form-control p-3"
               placeholder="Your degree"
+              ref={DegreeInput}
             />
           </div>
           <button
