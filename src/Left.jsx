@@ -3,10 +3,10 @@ import { useState } from "react";
 export default function Left() {
   const [Degree, setDegree] = useState(0);
   const [Gpa, setGpa] = useState("");
-
+  
   const ShowDegree = () => {
     if (Degree < 0 || Degree > 100) {
-      setGpa("not invaild");
+      setGpa("not valid");
     } else {
       if (Degree >= 90) {
         setGpa("A (Excellent)");
@@ -16,10 +16,11 @@ export default function Left() {
         setGpa("C (Good)");
       } else if (Degree >= 50) {
         setGpa("D (Pass)");
-      } 
+      } else {
+        setGpa("F (Fail)");
+      }
     }
-    
- };
+  };
 
   return (
     <div className="left">
